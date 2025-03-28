@@ -4,4 +4,9 @@ const appLogoURL =
 const cdnURL =
   "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_264,h_288,c_fill/";
 
-export { appLogoURL, cdnURL };
+const corsProxyURL = "https://corsproxy.io/?";
+
+const swiggyURL =
+  "https://www.swiggy.com/dapi/restaurants/list/v5?lat=23.0513311&lng=72.53194909999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
+
+export { appLogoURL, cdnURL, swiggyURL, corsProxyURL };

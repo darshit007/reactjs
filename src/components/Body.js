@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 const Body = () => {
   //Local State variable - Super powerful variable
   let [listOfRestaurant, setListOfRestaurant] = useState([]);
+  let [filteredListOfRestaurant, setfilteredListOfRestaurant] = useState([]);
 
   const [searchText, setSearchText] = useState("");
 
@@ -27,8 +28,11 @@ const Body = () => {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
       const data = await response.json(); // Assuming the response is JSON
-      console.log(data);
-      setListOfRestaurant(resList);
+      //console.log(data);
+      const liveListOfRestaurants =
+        data.data.cards[1].card.card.gridElements.infoWithStyle.restaurants;
+      setListOfRestaurant(liveListOfRestaurants);
+      setfilteredListOfRestaurant(liveListOfRestaurants);
     } catch (error) {
       console.error("error while fetching live data");
     }
@@ -50,12 +54,10 @@ const Body = () => {
           ></input>
           <button
             onClick={() => {
-              const filteredListOfRestaurant = resList.filter((res) =>
-                res.card.card.info.name
-                  .toLowerCase()
-                  .includes(searchText.toLowerCase())
+              filteredListOfRestaurant = listOfRestaurant.filter((res) =>
+                res.info.name.toLowerCase().includes(searchText.toLowerCase())
               );
-              setListOfRestaurant(filteredListOfRestaurant);
+              setfilteredListOfRestaurant(filteredListOfRestaurant);
             }}
           >
             Search
@@ -64,20 +66,20 @@ const Body = () => {
         <button
           className="filter-btn"
           onClick={() => {
-            const filteredListOfRestaurant = listOfRestaurant.filter(
-              (res) => res.card.card.info.avgRating > 4
+            filteredListOfRestaurant = listOfRestaurant.filter(
+              (res) => res.info.avgRating > 4
             );
-            setListOfRestaurant(filteredListOfRestaurant);
+            setfilteredListOfRestaurant(filteredListOfRestaurant);
           }}
         >
           Top Rated Restaurants
         </button>
       </div>
       <div className="res-container">
-        {listOfRestaurant.map((restaurant) => (
+        {filteredListOfRestaurant.map((restaurant) => (
           <Link
-            key={restaurant.card.card.info.id}
-            to={"/restaurant/" + restaurant.card.card.info.id}
+            key={restaurant.info.id}
+            to={"/restaurant/" + restaurant.info.id}
           >
             <RestaurantCard resData={restaurant} />
           </Link>

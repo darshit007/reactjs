@@ -6,8 +6,7 @@ const styleCard = {
 
 const RestaurantCard = (props) => {
   const { resData } = props;
-  const { name, cuisines, avgRating, sla, cloudinaryImageId } =
-    resData.card.card.info;
+  const { name, cuisines, avgRating, sla, cloudinaryImageId } = resData.info;
   return (
     <div className="res-card" style={styleCard}>
       <img

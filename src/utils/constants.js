@@ -9,4 +9,9 @@ const corsProxyURL = "https://corsproxy.io/?";
 const swiggyURL =
   "https://www.swiggy.com/dapi/restaurants/list/v5?lat=23.0513311&lng=72.53194909999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
 
-export { appLogoURL, cdnURL, swiggyURL, corsProxyURL };
+const restaurantURL =
+  "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=23.0513311&lng=72.53194909999999&restaurantId=";
+
+const remainingRestaurantURL = "&catalog_qa=undefined&submitAction=ENTER";
+
+export { appLogoURL, cdnURL, swiggyURL, corsProxyURL, restaurantURL };

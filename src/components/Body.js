@@ -3,6 +3,7 @@ import resList from "../utils/mockData";
 import { useState, useEffect } from "react";
 import { swiggyURL, corsProxyURL } from "../utils/constants";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 //let filteredRes;
 
@@ -74,10 +75,12 @@ const Body = () => {
       </div>
       <div className="res-container">
         {listOfRestaurant.map((restaurant) => (
-          <RestaurantCard
+          <Link
             key={restaurant.card.card.info.id}
-            resData={restaurant}
-          />
+            to={"/restaurant/" + restaurant.card.card.info.id}
+          >
+            <RestaurantCard resData={restaurant} />
+          </Link>
         ))}
       </div>
     </div>

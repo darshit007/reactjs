@@ -2,22 +2,25 @@ import { useState, useEffect } from "react";
 import { corsProxyURL, restaurantURL } from "../utils/constants";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
 
 const RestaurantMenu = () => {
-  const [resInfo, setResInfo] = useState([]);
+  //const [resInfo, setResInfo] = useState([]);
   let itemCards;
   const { resId } = useParams();
 
-  useEffect(() => {
-    fetchMenu();
-  }, []);
+  //   useEffect(() => {
+  //     fetchMenu();
+  //   }, []);
 
-  const fetchMenu = async () => {
-    let response = await fetch(corsProxyURL + restaurantURL + resId);
-    const data = await response.json();
-    console.log(data.data);
-    setResInfo(data.data);
-  };
+  //   const fetchMenu = async () => {
+  //     let response = await fetch(corsProxyURL + restaurantURL + resId);
+  //     const data = await response.json();
+  //     console.log(data.data);
+  //     setResInfo(data.data);
+  //   };
+
+  const resInfo = useRestaurantMenu(resId);
 
   const {
     name = "",
